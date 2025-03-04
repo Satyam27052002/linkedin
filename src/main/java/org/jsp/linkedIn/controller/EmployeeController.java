@@ -1,11 +1,13 @@
 package org.jsp.linkedIn.controller;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import org.jsp.linkedIn.entity.*;
 import org.jsp.linkedIn.responsestructure.ResponseStructure;
 import org.jsp.linkedIn.service.*;
 import org.jsp.linkedIn.util.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -61,5 +63,11 @@ public class EmployeeController
 	public ResponseStructure<Employee> setEmployeeStatus(@PathVariable int eid,@PathVariable EmployeeStatus status)
 	{
 		return service.setEmployeeStatus(eid,status);
+	}
+	
+	@Scheduled(fixedRate = 2000)
+	public void hi()
+	{
+		System.out.println("hi method invoked in: "+LocalDateTime.now());
 	}
 }
